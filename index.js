@@ -1,16 +1,19 @@
 const express = require('express');
 const morgan = require('morgan');
-const views = require('./views')
 const models = require('./models');
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
 
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended:false}));
+app.use('/wiki', wikiRouter);
+app.use('/user', userRouter);
 
 app.get('/', (req,res)=>{
-  res.send(views.layout(''));
+  res.redirect('/wiki');
 })
 
 const PORT = 5000;
