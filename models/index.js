@@ -35,6 +35,8 @@ const User = db.define('user', {
   }
 })
 
+Page.belongsTo(User, {as: 'author'});
+
 Page.beforeValidate((pageInstance)=>{
     pageInstance.slug = pageInstance.title.replace(/\s+/g, '_').replace(/\W/g, '');
 })

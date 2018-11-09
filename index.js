@@ -10,10 +10,14 @@ app.use(morgan('dev'));
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended:false}));
 app.use('/wiki', wikiRouter);
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 app.get('/', (req,res)=>{
   res.redirect('/wiki');
+})
+
+app.get('/users', (req,res)=>{
+  res.redirect('/users');
 })
 
 const PORT = 5000;
